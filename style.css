@@ -26,8 +26,10 @@ textarea{
 }
 
 .time-block{
-  text-align: center;
+  text-align: start;
   border-radius: 15px;
+  color: red;
+  font-weight: 500;
 }
 
 .row {
@@ -68,4 +70,32 @@ textarea{
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+.time-schedule-div{
+margin-top: 50px;
+}
+
+.time-schedule{
+  display: inline-block;
+  margin: 15px;
+  padding: 10px;
+  vertical-align: middle;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px; 
+}
+
+.task-schedule{
+  display: inline-block;
+  margin: 15px;
+  padding: 10px;
+  min-height: 100px;
+  width: 75%;
+  vertical-align: middle;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
 }
