@@ -20,7 +20,13 @@ var timeArray = [
     "9:00 PM",
     "10:00 PM"
 ]
+
+var taskArray = [];
+taskArray.push({ title: "Title", Category: "No Category", Priority: "Low" });
 // End region 
+
+var taskDetails = $("<div>");
+taskDetails.attr("class", "task-deatils");
 
 // Region Add date 
 $(".time-block").append(getH2DateElement(createAndDisplayDate()));
@@ -36,7 +42,7 @@ function createHourlyPlanDiv() {
     timeArray.forEach(time => {
         $(".time-schedule-div").append(getTimeTaskDiv(getTimeBlockElement(time), getTaskBlockElement("Title")));
     });
-   
+
 }
 
 function getTimeTaskDiv(time, task) {
@@ -62,9 +68,31 @@ function getTimeBlockElement(time) {
 }
 
 function getTaskBlockElement(title) {
+    var titleElement = getPElement(title)
     var newDiv = $("<div>");
     newDiv.attr("class", "task-schedule");
-    newDiv.text(title);
+    newDiv.attr("id", "task-element")
+   
+
+    addTaskClickListener();
     return newDiv;
 }
 
+function getPElement(text) {
+    var newP = $("<p>");
+    newP.text(text);
+    return newP;
+}
+
+
+
+
+function addTaskClickListener() {
+    $("#task-element").on('click', function(){
+        $("body").append(taskDetails)
+    })
+
+
+    console.log(taskArray);
+
+}

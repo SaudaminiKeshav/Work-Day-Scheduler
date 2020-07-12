@@ -78,7 +78,7 @@ margin-top: 50px;
 
 .time-schedule{
   display: inline-block;
-  margin: 15px;
+  margin: 10px 0 10px 5px;
   padding: 10px;
   vertical-align: middle;
   background-color: white;
@@ -88,14 +88,40 @@ margin-top: 50px;
 }
 
 .task-schedule{
-  display: inline-block;
-  margin: 15px;
+ display: inline-block;
+  margin: 10px 0 10px 10px;
   padding: 10px;
   min-height: 100px;
-  width: 75%;
+  width: 65%;
+  right: 5px;
   vertical-align: middle;
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
+}
+
+.container{
+  position: relative;
+}
+
+.task-desc{
+position: absolute;
+
+background-color: blue;
+min-height: 400px;
+min-width: 200px;
+left: 20%;
+top: 50%;
+right: 20%;
+}
+
+.task-deatils{
+background-color: blue;
+min-height: 400px;
+width: 60%;
+position: fixed;
+left: 50%;
+top: 70%;
+transform: translate(-50%, -50%);
 }
