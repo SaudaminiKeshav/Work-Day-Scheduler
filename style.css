@@ -116,12 +116,25 @@ top: 50%;
 right: 20%;
 }
 
-.task-deatils{
-background-color: blue;
-min-height: 400px;
+.task-details{
+background-color: black;
+min-height: 350px;
 width: 60%;
 position: fixed;
 left: 50%;
 top: 70%;
 transform: translate(-50%, -50%);
+}
+
+.details-title{
+  color: white;
+  padding: 10px;
+  text-align: start;
+  margin-bottom: 0px;
+  margin-left: 5px;
+}
+
+.details-hr{
+  background-color: white;
+  margin: 0px 10px 0px 10px;
 }

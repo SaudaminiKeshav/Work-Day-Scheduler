@@ -26,7 +26,20 @@ taskArray.push({ title: "Title", Category: "No Category", Priority: "Low" });
 // End region 
 
 var taskDetails = $("<div>");
-taskDetails.attr("class", "task-deatils");
+taskDetails.attr("class", "task-details");
+
+var detailsTitle = $("<h5>");
+detailsTitle.attr("class", "details-title");
+detailsTitle.text("Title");
+
+var detailsHr = $("<hr>");
+detailsHr.attr("class", "details-hr");
+
+var divSection1 = $("<div>");
+divSection1.attr("id", "div-section-1");
+divSection1.append(detailsTitle);
+divSection1.append(detailsHr);
+taskDetails.append(divSection1);
 
 // Region Add date 
 $(".time-block").append(getH2DateElement(createAndDisplayDate()));
