@@ -117,16 +117,35 @@ right: 20%;
 }
 
 .details-title{
+  background-color: black;
   color: white;
   padding: 10px;
   text-align: start;
   margin-bottom: 0px;
-  margin-left: 5px;
+
+  margin-right: 5px;
+  size: 500;
+  width:100%;
 }
 
 .details-hr{
   background-color: white;
   margin: 0px 10px 0px 10px;
+}
+
+.details-desc{
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: start;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  
+  width:100%;
+  height:100%;
+  max-lines: 6;
+  columns: 40;
+ 
 }
 
 #top{

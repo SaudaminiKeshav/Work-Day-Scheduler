@@ -26,7 +26,7 @@ taskArray.push({ timeKey: "4:00 AM", title: "Task 1", Category: "No Category", P
 taskArray.push({ timeKey: "5:00 AM", title: "Task 2", Category: "No Category", Priority: "High" });
 taskArray.push({ timeKey: "6:00 AM", title: "Task 3", Category: "No Category", Priority: "Low" });
 
-var timeKey = "";
+var timeKey = [];
  // Creating a div for details dialog 
  var taskDetailsDialog = $("<div>");
  taskDetailsDialog.attr("class", "task-details-dialog");
@@ -46,8 +46,10 @@ function createAndDisplayTaskDetailsDialog() {
     divSection1.attr("id", "div-section-1");
 
     // Title of the dialog 
-    var detailsTitle = $("<h5>");
+    var detailsTitle = $("<INPUT>");
     detailsTitle.attr("class", "details-title");
+    detailsTitle.attr("type", "text");
+    detailsTitle.attr("placeholder", "Enter Title");
 
     // Hr separation after the title 
     var detailsHr = $("<hr>");
@@ -57,8 +59,24 @@ function createAndDisplayTaskDetailsDialog() {
     divSection1.append(detailsTitle);
     divSection1.append(detailsHr);
 
+    // Creating a div to contain the title and hr of the details dialog 
+    var divSection2 = $("<div>");
+    divSection2.attr("id", "div-section-2");
+
+    // Title of the dialog 
+    var detailsDesc = $("<TEXTAREA>");
+    detailsDesc.attr("class", "details-desc");
+    detailsDesc.attr("type", "text");
+    detailsDesc.attr("rows", "15");
+    detailsDesc.attr("cols", "95");
+    detailsDesc.attr("placeholder", "Enter task description");
+
+    // Adding the title and hr to div 
+    divSection2.append(detailsDesc);
+
     // Add the first div dection to the details dialog div 
     taskDetailsDialog.append(divSection1);
+    taskDetailsDialog.append(divSection2);
 }
 
 
@@ -82,19 +100,19 @@ function createAndDisplayDate() {
 
 function createHourlyPlanDiv() {
     timeArray.forEach(time => {
-        $(".time-schedule-div").append(getTimeTaskDiv(getTimeBlockElement(time), getTaskBlockElement(getTaskObject(time))));
+        $(".time-schedule-div").append(getTimeTaskDiv(getTimeBlockElement(time), getTaskBlockElement()));
     });
 
 }
 
-function getTaskObject(time){
+// getTimeKey(time) 
+
+function getTimeKey(time){
     taskArray.find(obj => {
        
         if(obj.timeKey == time){
             console.log(obj.timeKey);
-            timeKey = `${obj.timeKey}`;
-        }else{
-            timeKey = "";
+            timeKey.push(`${obj.timeKey}`);
         }
     })
 }
@@ -115,7 +133,6 @@ function getTimeBlockElement(time) {
 }
 
 function getTaskBlockElement() {
-    console.log(timeKey);
 
     var titleElement = getPElement()
 
@@ -131,18 +148,8 @@ function getTaskBlockElement() {
 }
 
 function getPElement() {
-    var title = "";
-    taskArray.find(obj => {
-       
-        if(obj.timeKey == timeKey){
-            title = obj.title;
-        }else{
-            title = "";
-        }
-    })
-
     var newP = $("<p>");
-    newP.text(title);
+    newP.value = "Title";
     return newP;
 }
 
@@ -151,3 +158,13 @@ function addTaskClickListener() {
         $("body").append(taskDetailsDialog)
     })
 }
+
+// var title = "";
+// taskArray.find(obj => {
+   
+//     if(obj.timeKey == timeKey){
+//         title = obj.title;
+//     }else{
+//         title = "";
+//     }
+// })
