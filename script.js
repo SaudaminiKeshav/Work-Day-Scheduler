@@ -46,18 +46,22 @@ function createAndDisplayTaskDetailsDialog() {
     divSection1.attr("id", "div-section-1");
 
     // Title of the dialog 
-    var detailsTitle = $("<INPUT>");
+    var detailsTitle = $("<input>");
     detailsTitle.attr("class", "details-title");
     detailsTitle.attr("type", "text");
     detailsTitle.attr("placeholder", "Enter Title");
+    detailsTitle.on('input', function () {
+        console.log(detailsTitle.val());
+    });
+
 
     // Hr separation after the title 
-    var detailsHr = $("<hr>");
-    detailsHr.attr("class", "details-hr");
+    var detailsHr1 = $("<hr>");
+    detailsHr1.attr("class", "details-hr");
 
     // Adding the title and hr to div 
     divSection1.append(detailsTitle);
-    divSection1.append(detailsHr);
+    divSection1.append(detailsHr1);
 
     // Creating a div to contain the task description text area
     var divSection2 = $("<div>");
@@ -70,6 +74,9 @@ function createAndDisplayTaskDetailsDialog() {
     detailsDesc.attr("rows", "15");
     detailsDesc.attr("cols", "95");
     detailsDesc.attr("placeholder", "Enter task description");
+    detailsDesc.on('input', function () {
+        console.log(detailsDesc.val());
+    });
 
     // Adding the title and hr to div 
     divSection2.append(detailsDesc);
@@ -78,14 +85,26 @@ function createAndDisplayTaskDetailsDialog() {
     var divSection3 = $("<div>");
     divSection3.attr("id", "div-section-3");
 
+    // Hr separation after the title 
+    var detailsHr2 = $("<hr>");
+    detailsHr2.attr("class", "details-hr");
+
     var saveButton = $("<button>");
     saveButton.attr("class", "saveBtn");
     saveButton.text("Save");
+    saveButton.on('click', function saveFunction() {
+        console.log(detailsTitle.val());
+        console.log(detailsDesc.val());
+    });
 
     var deleteButton = $("<button>");
     deleteButton.attr("class", "saveBtn");
     deleteButton.text("Delete");
+    deleteButton.on('click', function deleteFunction() {
+        $(".task-details-dialog").hide();
+    });
 
+    divSection3.append(detailsHr2);
     divSection3.append(saveButton);
     divSection3.append(deleteButton);
 
@@ -172,6 +191,7 @@ function getPElement() {
 function addTaskClickListener() {
     $(".task-schedule").on('click', function () {
         $("body").append(taskDetailsDialog)
+        $(".task-details-dialog").show();
     })
 }
 
@@ -184,3 +204,4 @@ function addTaskClickListener() {
 //         title = "";
 //     }
 // })
+
