@@ -27,9 +27,9 @@ taskArray.push({ timeKey: "5:00 AM", title: "Task 2", Category: "No Category", P
 taskArray.push({ timeKey: "6:00 AM", title: "Task 3", Category: "No Category", Priority: "Low" });
 
 var timeKey = [];
- // Creating a div for details dialog 
- var taskDetailsDialog = $("<div>");
- taskDetailsDialog.attr("class", "task-details-dialog");
+// Creating a div for details dialog 
+var taskDetailsDialog = $("<div>");
+taskDetailsDialog.attr("class", "task-details-dialog");
 
 // End region 
 
@@ -40,7 +40,7 @@ $(document).ready(function () {
 });
 
 function createAndDisplayTaskDetailsDialog() {
-   
+
     // Creating a div to contain the title and hr of the details dialog 
     var divSection1 = $("<div>");
     divSection1.attr("id", "div-section-1");
@@ -59,7 +59,7 @@ function createAndDisplayTaskDetailsDialog() {
     divSection1.append(detailsTitle);
     divSection1.append(detailsHr);
 
-    // Creating a div to contain the title and hr of the details dialog 
+    // Creating a div to contain the task description text area
     var divSection2 = $("<div>");
     divSection2.attr("id", "div-section-2");
 
@@ -74,16 +74,32 @@ function createAndDisplayTaskDetailsDialog() {
     // Adding the title and hr to div 
     divSection2.append(detailsDesc);
 
+    // Creating a div to contain the save and delete buttons
+    var divSection3 = $("<div>");
+    divSection3.attr("id", "div-section-3");
+
+    var saveButton = $("<button>");
+    saveButton.attr("class", "saveBtn");
+    saveButton.text("Save");
+
+    var deleteButton = $("<button>");
+    deleteButton.attr("class", "saveBtn");
+    deleteButton.text("Delete");
+
+    divSection3.append(saveButton);
+    divSection3.append(deleteButton);
+
     // Add the first div dection to the details dialog div 
     taskDetailsDialog.append(divSection1);
     taskDetailsDialog.append(divSection2);
+    taskDetailsDialog.append(divSection3);
 }
 
 
 function getAndDisplayDate() {
     // get and display date 
     $(".time-block").append(getH2DateElement(createAndDisplayDate()));
-   
+
     createHourlyPlanDiv();
 }
 
@@ -107,10 +123,10 @@ function createHourlyPlanDiv() {
 
 // getTimeKey(time) 
 
-function getTimeKey(time){
+function getTimeKey(time) {
     taskArray.find(obj => {
-       
-        if(obj.timeKey == time){
+
+        if (obj.timeKey == time) {
             console.log(obj.timeKey);
             timeKey.push(`${obj.timeKey}`);
         }
@@ -161,7 +177,7 @@ function addTaskClickListener() {
 
 // var title = "";
 // taskArray.find(obj => {
-   
+
 //     if(obj.timeKey == timeKey){
 //         title = obj.title;
 //     }else{

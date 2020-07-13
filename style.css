@@ -61,10 +61,10 @@ textarea{
 
 .saveBtn {
   border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-radius: 15px;
   background-color: #06AED5;
   color: white;
+  float: right;
 }
 
 .saveBtn i:hover {
@@ -107,9 +107,8 @@ margin-top: 50px;
 
 .task-desc{
 position: absolute;
-
+height: auto;
 background-color: blue;
-min-height: 400px;
 min-width: 200px;
 left: 20%;
 top: 50%;
@@ -155,11 +154,11 @@ right: 20%;
 /* Web and tab devices  */
 .task-details-dialog{
   background-color: black;
-  min-height: 400px;
-  width: 60%;
+  min-height: 350px;
+  width: 50%;
   position: fixed;
   left: 50%;
-  top: 70%;
+  top: 65%;
   bottom: 50%;
   transform: translate(-50%, -50%);
   }
@@ -176,4 +175,8 @@ right: 20%;
     bottom: 50%;
     transform: translate(-50%, -50%);
     }
+}
+
+.div-section-3{
+  height: auto;
 }
