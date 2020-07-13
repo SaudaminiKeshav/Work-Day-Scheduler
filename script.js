@@ -22,30 +22,59 @@ var timeArray = [
 ]
 
 var taskArray = [];
-taskArray.push({ title: "Title", Category: "No Category", Priority: "Low" });
-// End region 
+taskArray.push({ timeKey: "4:00 AM", title: "Task 1", Category: "No Category", Priority: "Low" });
+taskArray.push({ timeKey: "5:00 AM", title: "Task 2", Category: "No Category", Priority: "High" });
+taskArray.push({ timeKey: "6:00 AM", title: "Task 3", Category: "No Category", Priority: "Low" });
 
-var taskDetails = $("<div>");
-taskDetails.attr("class", "task-details");
-
-var detailsTitle = $("<h5>");
-detailsTitle.attr("class", "details-title");
-detailsTitle.text("Title");
-
-var detailsHr = $("<hr>");
-detailsHr.attr("class", "details-hr");
-
-var divSection1 = $("<div>");
-divSection1.attr("id", "div-section-1");
-divSection1.append(detailsTitle);
-divSection1.append(detailsHr);
-taskDetails.append(divSection1);
-
-// Region Add date 
-$(".time-block").append(getH2DateElement(createAndDisplayDate()));
-createHourlyPlanDiv();
+var timeKey = "";
+ // Creating a div for details dialog 
+ var taskDetailsDialog = $("<div>");
+ taskDetailsDialog.attr("class", "task-details-dialog");
 
 // End region 
+
+$(document).ready(function () {
+    getAndDisplayDate();
+    createAndDisplayTaskDetailsDialog();
+
+});
+
+function createAndDisplayTaskDetailsDialog() {
+   
+    // Creating a div to contain the title and hr of the details dialog 
+    var divSection1 = $("<div>");
+    divSection1.attr("id", "div-section-1");
+
+    // Title of the dialog 
+    var detailsTitle = $("<h5>");
+    detailsTitle.attr("class", "details-title");
+
+    // Hr separation after the title 
+    var detailsHr = $("<hr>");
+    detailsHr.attr("class", "details-hr");
+
+    // Adding the title and hr to div 
+    divSection1.append(detailsTitle);
+    divSection1.append(detailsHr);
+
+    // Add the first div dection to the details dialog div 
+    taskDetailsDialog.append(divSection1);
+}
+
+
+function getAndDisplayDate() {
+    // get and display date 
+    $(".time-block").append(getH2DateElement(createAndDisplayDate()));
+   
+    createHourlyPlanDiv();
+}
+
+function getH2DateElement(text) {
+    var newH2 = $("<h2>");
+    newH2.attr("class", "time-block");
+    newH2.text(text);
+    return newH2;
+}
 
 function createAndDisplayDate() {
     return moment().format('dddd, MMMM Do YYYY');
@@ -53,9 +82,21 @@ function createAndDisplayDate() {
 
 function createHourlyPlanDiv() {
     timeArray.forEach(time => {
-        $(".time-schedule-div").append(getTimeTaskDiv(getTimeBlockElement(time), getTaskBlockElement("Title")));
+        $(".time-schedule-div").append(getTimeTaskDiv(getTimeBlockElement(time), getTaskBlockElement(getTaskObject(time))));
     });
 
+}
+
+function getTaskObject(time){
+    taskArray.find(obj => {
+       
+        if(obj.timeKey == time){
+            console.log(obj.timeKey);
+            timeKey = `${obj.timeKey}`;
+        }else{
+            timeKey = "";
+        }
+    })
 }
 
 function getTimeTaskDiv(time, task) {
@@ -66,13 +107,6 @@ function getTimeTaskDiv(time, task) {
     return newTimeTaskDiv;
 }
 
-function getH2DateElement(text) {
-    var newH2 = $("<h2>");
-    newH2.attr("class", "time-block");
-    newH2.text(text);
-    return newH2;
-}
-
 function getTimeBlockElement(time) {
     var newh6 = $("<h6>");
     newh6.attr("class", "time-schedule");
@@ -80,32 +114,40 @@ function getTimeBlockElement(time) {
     return newh6;
 }
 
-function getTaskBlockElement(title) {
-    var titleElement = getPElement(title)
+function getTaskBlockElement() {
+    console.log(timeKey);
+
+    var titleElement = getPElement()
+
+    // Creating new div to display title and tags 
     var newDiv = $("<div>");
     newDiv.attr("class", "task-schedule");
     newDiv.attr("id", "task-element")
-   
+    newDiv.append(titleElement);
 
+    // Adding click listener to the task div 
     addTaskClickListener();
     return newDiv;
 }
 
-function getPElement(text) {
+function getPElement() {
+    var title = "";
+    taskArray.find(obj => {
+       
+        if(obj.timeKey == timeKey){
+            title = obj.title;
+        }else{
+            title = "";
+        }
+    })
+
     var newP = $("<p>");
-    newP.text(text);
+    newP.text(title);
     return newP;
 }
 
-
-
-
 function addTaskClickListener() {
-    $("#task-element").on('click', function(){
-        $("body").append(taskDetails)
+    $(".task-schedule").on('click', function () {
+        $("body").append(taskDetailsDialog)
     })
-
-
-    console.log(taskArray);
-
 }

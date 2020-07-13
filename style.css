@@ -116,17 +116,6 @@ top: 50%;
 right: 20%;
 }
 
-.task-details{
-background-color: black;
-min-height: 400px;
-width: 60%;
-position: fixed;
-left: 50%;
-top: 60%;
-bottom: 50%;
-transform: translate(-50%, -50%);
-}
-
 .details-title{
   color: white;
   padding: 10px;
@@ -144,8 +133,21 @@ transform: translate(-50%, -50%);
   padding-left:20%;
 }
 
+/* Web and tab devices  */
+.task-details-dialog{
+  background-color: black;
+  min-height: 400px;
+  width: 60%;
+  position: fixed;
+  left: 50%;
+  top: 70%;
+  bottom: 50%;
+  transform: translate(-50%, -50%);
+  }
+
+  /* Mobile devices  */
 @media screen and (max-width: 1100px){
-  .task-details{
+  .task-details-dialog{
     background-color: black;
     min-height: 350px;
     width: 85%;
