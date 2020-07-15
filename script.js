@@ -23,17 +23,14 @@ var timeArray = [
 
 var taskArray = [];
 
+var WorkDayNote = [];
+
 $(document).ready(function () {
     getAndDisplayDate();
-    
+
     createHourlyPlanDiv();
 
-
-    // $("#task-details-dialog").on('show', prePopulateDataIfSaved());
-
-    // function prePopulateDataIfSaved() {
-    //     console.log("I'm here");
-    // }
+    createLocalStorage();
 });
 
 function getAndDisplayDate() {
@@ -58,12 +55,9 @@ function getTimeTaskDiv(time) {
     // Create container div 
     var newTimeTaskDiv = $("<div>");
     newTimeTaskDiv.attr("class", "time-task-schedule");
-    newTimeTaskDiv.attr("id", `time-task-${time}`);
+    newTimeTaskDiv.attr("id", `${time}`);
     var divID = $(".time-task-schedule").attr("id");
-    $(".time-task-schedule").on('click',function () {
-        var id = $(this).attr("id");
-        console.log(id);
-
+    $(".time-task-schedule").on('click', function () {
         createAndDisplayTaskDetailsDialog($(this).attr("id"));
     });
 
@@ -89,21 +83,21 @@ function getTimeTaskDiv(time) {
     return newTimeTaskDiv;
 }
 
-function customClickListener(id) {
-    $(`title${id}`).text(id);
+// function customClickListener(id) {
+//     $(`title${id}`).text(id);
 
-    $("#task-details-dialog").show();
+//     $("#task-details-dialog").show();
 
-    console.log(id);
-    // getSavedData(id)
-    // var dialog = $("#task-details-dialog");
-    // $("body").append(dialog);
-}
+//     console.log(id);
+//     // getSavedData(id)
+//     // var dialog = $("#task-details-dialog");
+//     // $("body").append(dialog);
+// }
 
 function createAndDisplayTaskDetailsDialog(id) {
     // Creating a container div for details dialog 
     var taskDetailsDialog = $("<div>");
-    taskDetailsDialog.attr("id", "task-details-dialog");
+    taskDetailsDialog.attr("class", "task-details-dialog");
 
     // Creating a div to contain the title and hr of the details dialog 
     var divSection1 = $("<div>");
@@ -116,6 +110,13 @@ function createAndDisplayTaskDetailsDialog(id) {
     detailsTitle.attr("type", "text");
     detailsTitle.attr("placeholder", "Enter Title");
 
+
+    for (var i = 0; i < taskArray.length; i++) {
+        if (taskArray[i].key == id) {
+            detailsTitle.val(taskArray[i].title);
+        }
+    }
+
     // Hr separation after the title 
     var detailsHr1 = $("<hr>");
     detailsHr1.attr("class", "details-hr");
@@ -123,7 +124,7 @@ function createAndDisplayTaskDetailsDialog(id) {
     // Display the time for which the task is created 
     var detailsTimeKey = $("<p>");
     detailsTimeKey.attr("id", "details-time-key");
-    detailsTimeKey.text("");
+    detailsTimeKey.text("Time: " + id);
 
     // Adding the title and hr to div 
     divSection1.append(detailsTitle);
@@ -142,6 +143,12 @@ function createAndDisplayTaskDetailsDialog(id) {
     detailsDesc.attr("cols", "95");
     detailsDesc.attr("placeholder", "Enter task description");
 
+    for (var i = 0; i < taskArray.length; i++) {
+        if (taskArray[i].key == id) {
+            detailsDesc.val(taskArray[i].desc);
+        }
+    }
+
     // Adding the task desc to div 
     divSection2.append(detailsDesc);
 
@@ -153,9 +160,9 @@ function createAndDisplayTaskDetailsDialog(id) {
     var detailsHr2 = $("<hr>");
     detailsHr2.attr("class", "details-hr");
 
-    var saveButton = addSaveButtonAndSaveEventListener(detailsTimeKey.text(), detailsTitle.val(), detailsDesc.val());
+    var saveButton = addSaveButtonAndSaveEventListener(id, detailsTimeKey.text(), detailsTitle, detailsDesc);
 
-    var deleteButton = addDeleteButtonAndDeleteEventListener();
+    var deleteButton = addDeleteButtonAndDeleteEventListener($(".task-details-dialog"));
 
     divSection3.append(detailsHr2);
     divSection3.append(saveButton);
@@ -165,35 +172,92 @@ function createAndDisplayTaskDetailsDialog(id) {
     taskDetailsDialog.append(divSection1);
     taskDetailsDialog.append(divSection2);
     taskDetailsDialog.append(divSection3);
-    console.log("Dialog created");
 
     $("body").append(taskDetailsDialog);
 }
 
-function addSaveButtonAndSaveEventListener(timeKey, title, desc) {
+function addSaveButtonAndSaveEventListener(id, timeKey, title, desc) {
     var saveButton = $("<button>");
     saveButton.attr("class", "saveBtn");
     saveButton.text("Save");
     saveButton.on('click', function saveFunction() {
-        taskArray.push({ timeKey: `${timeKey}`, title: `${title}`, desc: `${desc}`, Category: "No Category", Priority: "Low" })
+
+
+        if (taskArray.length == 0) {
+            taskArray.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
+        } else {
+            for (var i = 0; i < taskArray.length; i++) {
+                if (taskArray[i].key != id) {
+                    taskArray.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" });
+                } else if (taskArray[i].key == id) {
+                    taskArray.pop(taskArray[i].key);
+                    taskArray.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
+                }
+            }
+        }
+
+
+        WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
+
+        if (WorkDayNote.length == 0) {
+            WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
+        } else {
+            for (var i = 0; i < WorkDayNote.length; i++) {
+                if (WorkDayNote[i].key != id) {
+                    WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" });
+                } else if (WorkDayNote[i].key == id) {
+                    WorkDayNote.pop(WorkDayNote[i].key);
+                    WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
+                    localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
+                }
+            }
+        }
+        localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
+
 
         console.log(taskArray);
 
-        detailsTitle.val("");
-        detailsDesc.val("");
-        // $("#task-details-dialog").hide();
+        $("#details-time-key").text = timeKey;
+        title.val("");
+        desc.val("");
+        $(".task-details-dialog").hide();
     });
     return saveButton;
 }
 
-function addDeleteButtonAndDeleteEventListener() {
+function addDeleteButtonAndDeleteEventListener(div) {
     var deleteButton = $("<button>");
     deleteButton.attr("class", "saveBtn");
     deleteButton.text("Delete");
     deleteButton.on('click', function deleteFunction() {
         // taskArray.pop({ timeKey: `${detailsTimeKey.text()}` })
 
-        // $("#task-details-dialog").hide();
+        $(".task-details-dialog").hide();
+
     });
     return deleteButton;
+}
+
+function getTitleData(timeID) {
+    WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
+
+    for (var i = 0; i < WorkDayNote.length; i++) {
+
+        var rtemp = WorkDayNote.hasOwnProperty("time");
+        console.log(rtemp);
+    }
+
+    // console.log(timeID);
+    // console.log(note.time);
+    // if (note.time == timeID) {
+    //     console.log(timeID);
+    //     console.log(note.time);
+    //     $("#details-title").value = note.title.text;
+    // }
+
+}
+
+
+function createLocalStorage() {
+    localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
 }
