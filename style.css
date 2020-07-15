@@ -117,9 +117,9 @@ top: 50%;
 right: 20%;
 }
 
-.details-title{
-  background-color: black;
-  color: white;
+#details-title{
+  background-color: white;
+  color: black;
   padding: 10px;
   text-align: start;
   display: inline-block;
@@ -128,22 +128,22 @@ right: 20%;
   width:auto;
 }
 
-#details-timekey{
-  background-color: black;
-  color: white;
+#details-time-key{
+  background-color: white;
+  color: black;
   display: inline-block;
   padding-left: 5px;
   margin-left: 5px;
 }
 
 .details-hr{
-  background-color: white;
+  background-color: black;
   margin: 0px 10px 0px 10px;
 }
 
-.details-desc{
-  background-color: black;
-  color: white;
+#details-desc{
+  background-color: white;
+  color: black;
   padding: 10px;
   text-align: start;
   margin-bottom: 0px;
@@ -158,8 +158,9 @@ right: 20%;
 }
 
 /* Web and tab devices  */
-.task-details-dialog{
-  background-color: black;
+#task-details-dialog{
+  background-color: white;
+  color: black;
   border-color: red;
   border-style: solid;
   min-height: 350px;
@@ -173,8 +174,9 @@ right: 20%;
 
   /* Mobile devices  */
 @media screen and (max-width: 1100px){
-  .task-details-dialog{
-    background-color: black;
+  #task-details-dialog{
+    background-color: white;
+    color: black;
     min-height: 350px;
     width: 85%;
     position: fixed;
@@ -187,4 +189,6 @@ right: 20%;
 
 .div-section-3{
   margin: 5px;
+  background-color: white;
+  color: black;
 }
