@@ -126,6 +126,7 @@ right: 20%;
   min-width: 75%;
   size: 500;
   width:auto;
+  border-color: white;
 }
 
 #details-time-key{
