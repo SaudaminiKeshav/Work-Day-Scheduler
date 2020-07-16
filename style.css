@@ -45,17 +45,17 @@ textarea{
 }
 
 .past {
-  background-color: #d3d3d3;
+  background-color: #6BB9D1;
   color: white;
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #FD6F61;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #77C499;
   color: white;
 }
 
@@ -219,3 +219,5 @@ right: 20%;
   background-color: white;
   color: black;
 }
+
+/* /#6BB9D1 */
