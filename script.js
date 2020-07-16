@@ -162,7 +162,7 @@ function createAndDisplayTaskDetailsDialog(id) {
 
     var saveButton = addSaveButtonAndSaveEventListener(id, detailsTimeKey.text(), detailsTitle, detailsDesc);
 
-    var deleteButton = addDeleteButtonAndDeleteEventListener($(".task-details-dialog"));
+    var deleteButton = addDeleteButtonAndDeleteEventListener(id);
 
     divSection3.append(detailsHr2);
     divSection3.append(saveButton);
@@ -225,12 +225,31 @@ function addSaveButtonAndSaveEventListener(id, timeKey, title, desc) {
     return saveButton;
 }
 
-function addDeleteButtonAndDeleteEventListener(div) {
+function addDeleteButtonAndDeleteEventListener(id) {
     var deleteButton = $("<button>");
     deleteButton.attr("class", "saveBtn");
     deleteButton.text("Delete");
     deleteButton.on('click', function deleteFunction() {
-        // taskArray.pop({ timeKey: `${detailsTimeKey.text()}` })
+
+        if (taskArray.length != 0) {
+            for (var i = 0; i < taskArray.length; i++) {
+                if (taskArray[i].key == id) {
+                    taskArray.pop(taskArray[i].key);
+                }
+            }
+        }
+
+        WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
+
+        if (WorkDayNote.length != 0) {
+            for (var i = 0; i < WorkDayNote.length; i++) {
+                if (WorkDayNote[i].key == id) {
+                    WorkDayNote.pop(WorkDayNote[i].key);
+                    localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
+                }
+            }
+        }
+        localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
 
         $(".task-details-dialog").hide();
 

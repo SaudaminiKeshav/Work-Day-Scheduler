@@ -129,6 +129,21 @@ right: 20%;
   border-color: white;
 }
 
+  /* Mobile devices  */
+  @media screen and (max-width: 1100px){
+    #details-title{
+      background-color: white;
+      color: black;
+      padding: 10px;
+      text-align: start;
+      display: inline-block;
+      min-width: 60%;
+      size: 500;
+      width:auto;
+      border-color: white;
+    }
+  }
+
 #details-time-key{
   background-color: white;
   color: black;
@@ -136,6 +151,17 @@ right: 20%;
   padding-left: 5px;
   margin-left: 5px;
 }
+
+  /* Mobile devices  */
+  @media screen and (max-width: 1100px){
+    #details-time-key{
+      background-color: white;
+      color: black;
+      display: inline-block;
+      padding-left: 5px;
+      margin-left: 5px;
+    }
+  }
 
 .details-hr{
   background-color: black;
@@ -162,7 +188,7 @@ right: 20%;
 .task-details-dialog{
   background-color: white;
   color: black;
-  border-color: red;
+  border-color: blacl;
   border-style: solid;
   min-height: 350px;
   width: 50%;
