@@ -246,6 +246,7 @@ right: 20%;
   font-weight: bold;
   display : inline-flex;
   float: right;
+  border-radius: 10px;
 }
 
 .hr-separator{
