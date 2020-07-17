@@ -234,7 +234,7 @@ right: 20%;
 
 .task-title{
   font-weight: bold;
-  margin: 5px 10px 0 10px;
+  margin: 15px 10px 10px 10px;
   padding-left: 20px;
   padding-top: 10px;
   display : inline-flex;
@@ -242,6 +242,7 @@ right: 20%;
 
 .clicked-time{
   padding: 10px;
+  margin: 10px 10px 0 10px;
   font-weight: bold;
   display : inline-flex;
   float: right;
