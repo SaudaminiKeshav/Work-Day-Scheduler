@@ -18,6 +18,8 @@ var currentDate = moment().format('dddd, MMMM Do YYYY');
 let currentTime = moment().format('h:mm A');
 // currentTime = "10:00 AM";
 
+
+
 var taskArray = [];
 
 var WorkDayNote = [];
