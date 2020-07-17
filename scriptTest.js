@@ -114,8 +114,8 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
         console.log("Past");
         taskDiv.attr('style', 'background-color:#6BB9D1');
     } else if ((parseInt(time) < parseInt(newCurrentHour)) && time.includes("P")) {
-        console.log("Future");
-        taskDiv.attr('style', 'background-color:#77C499');
+        console.log("Past");
+        taskDiv.attr('style', 'background-color:#6BB9D1');
     } else if ((parseInt(time) < parseInt(newCurrentHour)) && time.includes("A")) {
         console.log("Past");
         taskDiv.attr('style', 'background-color:#6BB9D1');
