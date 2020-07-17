@@ -16,7 +16,9 @@ var timeArray = [
 
 // Get current date and time 
 var currentDate = moment().format('dddd, MMMM Do YYYY');
-let currentTime = moment().format('h:mm A');
+var currentTime = moment().format('h:mm A');
+
+var timeDivColor = "";
 
 $(document).ready(function () {
     getAndDisplayDate();
@@ -81,6 +83,7 @@ function getTimeDiv(time) {
     timeH6.on('click', function () {
         // $(this).attr("id")
         $(".clicked-time").text("TIME: " + time);
+        $(".clicked-time").attr("style",  $(this).attr("style"));
     })
     colorCodeDivAsPerTheCurrentTime(time.toString(), timeH6);
     return timeH6;
@@ -120,6 +123,7 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
         console.log("Future");
         taskDiv.attr('style', 'background-color:#77C499');
     }
+
 }
 
 function createTaskDiv() {
