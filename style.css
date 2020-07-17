@@ -18,18 +18,11 @@ textarea{
   background-color: transparent;
   color: black;
   border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 5px solid black;
 }
 
 .description{
   white-space: pre-wrap;
-}
-
-.time-block{
-  text-align: start;
-  border-radius: 15px;
-  color: red;
-  font-weight: 500;
 }
 
 .row {
@@ -62,7 +55,7 @@ textarea{
 .saveBtn {
   border-left: 1px solid black;
   border-radius: 5px;
-  background-color: #06AED5;
+  background-color: #FD9F76;
   color: white;
   float: right;
   padding: 5px;
@@ -74,24 +67,64 @@ textarea{
   transition: all .3s ease-in-out;
 }
 
-.time-schedule-div{
-margin-top: 50px;
+.deleteBtn {
+  border-left: 1px solid black;
+  border-radius: 5px;
+  background-color: #B098D9;
+  color: white;
+  float: right;
+  padding: 5px;
+  
 }
 
-.time-schedule{
-  display: inline-block;
+.deleteBtn i:hover {
+  font-size: 20px;
+  transition: all .3s ease-in-out;
+}
+
+
+.time-block{
+  text-align: center;
+  border-radius: 5px;
+  color: red;
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.time-title{
+  font-weight: bold;
   margin: 10px 0 10px 5px;
   padding: 10px;
   vertical-align: middle;
-  background-color: #dac7fc;
+}
+
+.time-schedule-div{
+float: left;
+}
+
+.time-schedule{
+  display : block;
+  margin: 10px 0 10px 5px;
+  padding: 10px;
+  height: 100%;
+  display: flex;
   font-weight: bold;
   border: 2px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px; 
 }
 
-.task-schedule{
- display: inline-block;
+
+/* .time-task-schedule{
+  display: inline-block;
+  display: flex;
+  height: 100%;
+
+} */
+
+
+/* .task-schedule{
+  display: inline-block;
   margin: 10px 0 10px 10px;
   padding: 10px;
   min-height: 100px;
@@ -102,13 +135,15 @@ margin-top: 50px;
   border: 2px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
-}
+} */
 
 .container{
   position: relative;
+  margin-bottom: 200px;
+  margin-top: 50px;
 }
 
-.task-desc{
+/* .task-desc{
 position: absolute;
 height: auto;
 background-color: blue;
@@ -116,38 +151,7 @@ min-width: 200px;
 left: 20%;
 top: 50%;
 right: 20%;
-}
-
-#details-title{
-  background-color: white;
-  color: black;
-  padding: 10px;
-  border:none;
-  text-align: start;
-  display: inline-block;
-  min-width: 70%;
-  size: 400;
-  width:auto;
-  margin-left: 5px;
-  margin: 5px;
-  border-color: white;
-}
-
-  /* Mobile devices  */
-  @media screen and (max-width: 1100px){
-    #details-title{
-      background-color: white;
-      border-radius: 15px;
-      color: black;
-      padding: 10px;
-      text-align: start;
-      display: inline-block;
-      min-width: 60%;
-      size: 500;
-      width:auto;
-      border-color: white;
-    }
-  }
+} */
 
 #details-time-key{
   background-color: white;
@@ -171,18 +175,6 @@ right: 20%;
 .details-hr{
   background-color: black;
   margin: 0px 10px 0px 10px;
-}
-
-#details-desc{
-  background-color: white;
-  color: black;
-  padding: 10px;
-  text-align: start;
-  margin-bottom: 0px;
-  margin-right: 5px;
-  width:100%;
-  max-lines: 5;
-  columns: 40;
 }
 
 #top{
@@ -228,3 +220,94 @@ right: 20%;
 }
 
 /* /#6BB9D1 */
+
+
+.task-schedule-div{
+  background-color: white;
+  height: 600px;
+  width: auto;
+  display: block;
+  margin-left: 110px;
+  margin-top: 10px;
+  border: 1px solid #000000;
+}
+
+.task-title{
+  font-weight: bold;
+  margin: 5px 0 0 5px;
+  padding-left: 20px;
+  padding-top: 10px;
+  display : inline-flex;
+}
+
+.clicked-time{
+  padding-top: 10px;
+  margin: 5px 0 0 5px;
+  padding-right: 10px;
+  font-weight: bold;
+  display : inline-flex;
+  float: right;
+}
+
+.hr-separator{
+  background-color: #000000;
+}
+
+.hr-separator-grey{
+  background-color: rgb(165, 162, 162);
+  margin-left: 10px;
+  margin-right: 10px;
+  min-width: 70%;
+}
+
+@media screen and (max-width: 1100px){
+  .hr-separator-grey{
+  background-color: rgb(165, 162, 162);
+  margin-left: 10px;
+  margin-right: 10px;
+  min-width: 60%;
+  }
+}
+
+.task-title-input{
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border:none;
+  text-align: start;
+  display: inline-block;
+  min-width: 70%;
+  size: 400;
+  width:auto;
+  margin-left: 5px;
+  border-color: white;
+}
+
+  /* Mobile devices  */
+  @media screen and (max-width: 1100px){
+    #task-title-input{
+      background-color: white;
+      border-radius: 15px;
+      color: black;
+      padding: 10px;
+      text-align: start;
+      display: inline-block;
+      min-width: 60%;
+      size: 500;
+      width:auto;
+      border-color: white;
+    }
+  }
+
+  #details-desc{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    text-align: start;
+    margin-bottom: 0px;
+    margin-right: 5px;
+    height:400px;
+    width:100%;
+    max-lines: 5;
+    columns: 100;
+  }

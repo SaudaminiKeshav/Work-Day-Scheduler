@@ -192,7 +192,8 @@ function addSaveButtonAndSaveEventListener(id, timeKey, title, desc) {
                 if (taskArray[i].key != id) {
                     taskArray.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" });
                 } else if (taskArray[i].key == id) {
-                    taskArray.pop(taskArray[i].key);
+                    console.log("got an entry already");
+                    taskArray.pop(taskArray[i]);
                     taskArray.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
                 }
             }
@@ -208,7 +209,7 @@ function addSaveButtonAndSaveEventListener(id, timeKey, title, desc) {
                 if (WorkDayNote[i].key != id) {
                     WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" });
                 } else if (WorkDayNote[i].key == id) {
-                    WorkDayNote.pop(WorkDayNote[i].key);
+                    WorkDayNote.pop(WorkDayNote[i]);
                     WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
                     localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
                 }
