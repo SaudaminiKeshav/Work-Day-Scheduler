@@ -193,6 +193,10 @@ function createTaskDiv(time) {
     deleteButton.attr("class", "deleteBtn");
     deleteButton.text("Delete");
     deleteButton.click(function () {
+
+        taskTitle.val("");
+        taskDesc.val("");
+
         if (localStorage.getItem('WorkDayNote') != null) {
             // Else fetch the existing array from local storage 
             WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
