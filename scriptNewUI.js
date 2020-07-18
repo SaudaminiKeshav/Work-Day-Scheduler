@@ -118,7 +118,6 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
     } else if (parseInt(time) > parseInt(newCurrentHour)) {
         taskDiv.attr('style', 'background-color:#77C499');
     }
-
 }
 
 function createTaskDiv(time) {
@@ -132,7 +131,9 @@ function createTaskDiv(time) {
     var taskTitle = $("<INPUT>");
     taskTitle.attr("id", "task-title-input");
     taskTitle.attr("placeholder", "Enter Title");
-    taskTitle.attr("value", "");
+    var titleText = getTitleFromLocalStorage(time);
+    console.log(titleText);
+    taskTitle.attr("value", titleText);
 
     var hrSeperator2 = $("<hr>");
     hrSeperator2.attr("class", "hr-separator-grey");
@@ -151,10 +152,6 @@ function createTaskDiv(time) {
     saveButton.text("Save");
 
     saveButton.click(function () {
-
-        console.log(time);
-        console.log(taskTitle.val());
-        console.log(taskDesc.val());
 
         if (localStorage.getItem('WorkDayNote') === null) {
 
@@ -221,48 +218,18 @@ function createTaskDiv(time) {
     return newTaskDiv;
 }
 
+function getTitleFromLocalStorage() {
+    if (localStorage.getItem('WorkDayNote') != null) {
+        // Else fetch the existing array from local storage 
+        WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
 
-function saveClickListener(time, taskTitle, taskDesc) {
-
+        // If the array existing and is empty, push an object onto the array 
+        if (WorkDayNote.length != 0 && taskArray.length != 0) {
+            for (var i = 0; i < taskArray.length; i++) {
+                if (taskArray[i].key == time) {
+                    return taskArray[i].title;
+                }
+            }
+        }
+    }
 }
-
-
-
-    // if (WorkDayNote.length == 0) {
-    //     WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
-    // } else {
-    //     // for (var i = 0; i < WorkDayNote.length; i++) {
-    //     //     if (WorkDayNote[i].key != id) {
-    //     //         WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" });
-    //     //     } else if (WorkDayNote[i].key == id) {
-    //     //         WorkDayNote.pop(WorkDayNote[i]);
-    //     //         WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
-    //     //         localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
-    //     //     }
-    //     // }
-    // }
-    // localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
-
-
-    // console.log(taskArray);
-
-    // $("#details-time-key").text = timeKey;
-    // title.val("");
-    // desc.val("");
-    // $(".task-details-dialog").hide();
-
-
-
-        // var id = "";
-    // // event handler
-    // $(".clicked-time").on('contentchanged', function (e) {
-    //     console.log(e.target.id);
-    //     // id = id.replace(id, e.target.id);
-    //    id.prepend(e.target.id);
-    // });
-
-    // console.log(id);
-
-    // var previousArrayItem = taskArray.slice(-1)[0];
-
-    // console.log(previousArrayItem);
