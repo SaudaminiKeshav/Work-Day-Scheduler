@@ -115,15 +115,15 @@ float: left;
 }
 
 
-/* .time-task-schedule{
+.time-task-schedule{
   display: inline-block;
   display: flex;
   height: 100%;
 
-} */
+}
 
 
-/* .task-schedule{
+.task-schedule{
   display: inline-block;
   margin: 10px 0 10px 10px;
   padding: 10px;
@@ -135,7 +135,7 @@ float: left;
   border: 2px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
-} */
+}
 
 .container{
   position: relative;
@@ -143,7 +143,7 @@ float: left;
   margin-top: 50px;
 }
 
-/* .task-desc{
+.task-desc{
 position: absolute;
 height: auto;
 background-color: blue;
@@ -151,7 +151,7 @@ min-width: 200px;
 left: 20%;
 top: 50%;
 right: 20%;
-} */
+}
 
 #details-time-key{
   background-color: white;
