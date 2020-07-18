@@ -160,32 +160,57 @@ function createTaskDiv(time) {
 
             // Add content to taskArray and set the item to local storage 
             taskArray.push({ key: time, title: `${taskTitle.val()}`, desc: `${taskDesc.val()}` })
-             // Create a new array in local storage if doesn't exist 
-             localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
-             
+            // Create a new array in local storage if doesn't exist 
+            localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
+
         } else {
             // Else fetch the existing array from local storage 
             WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
 
+            if ((WorkDayNote.length == 0 && taskArray.length == 0)) {
+                // Add content to taskArray and set the item to local storage 
+                taskArray.push({ key: time, title: `${taskTitle.val()}`, desc: `${taskDesc.val()}` })
+                // Create a new array in local storage if doesn't exist 
+                localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
+            }
+
             // If the array existing and is empty, push an object onto the array 
-            if (WorkDayNote.length != 0 && taskArray.length != 0) {
-                for(var i=0;i<taskArray.length;i++){
-                    if(taskArray[i].key == time){
-                        taskArray.splice(i,1);
+            else if (WorkDayNote.length != 0 && taskArray.length != 0) {
+                for (var i = 0; i < taskArray.length; i++) {
+                    if (taskArray[i].key == time) {
+                        taskArray.splice(i, 1);
                     }
                 }
                 taskArray.push({ key: time, title: `${taskTitle.val()}`, desc: `${taskDesc.val()}` });
                 localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
                 console.log(WorkDayNote);
             }
-            
         }
     });
 
     var deleteButton = $("<button>");
     deleteButton.attr("class", "deleteBtn");
     deleteButton.text("Delete");
+    deleteButton.click(function () {
+        if (localStorage.getItem('WorkDayNote') != null) {
+            // Else fetch the existing array from local storage 
+            WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
 
+            // If the array existing and is empty, push an object onto the array 
+            if (WorkDayNote.length != 0 && taskArray.length != 0) {
+                for (var i = 0; i < taskArray.length; i++) {
+                    if (taskArray[i].key == time) {
+                        taskArray.splice(i, 1);
+                    }
+                }
+
+                localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
+                console.log(WorkDayNote);
+            }
+            localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
+
+        }
+    })
 
     newTaskDiv.append(hrSeperator1);
     newTaskDiv.append(taskTitle);
