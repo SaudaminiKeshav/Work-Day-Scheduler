@@ -93,7 +93,7 @@ textarea{
 
 .time-title{
   font-weight: bold;
-  margin: 0 0 10px 5px;
+  margin: 10px 0 10px 5px;
   padding: 10px;
   vertical-align: middle;
 }
@@ -114,43 +114,10 @@ float: left;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px; 
 }
 
-
-.time-task-schedule{
-  display: inline-block;
-  display: flex;
-  height: 100%;
-
-}
-
-
-.task-schedule{
-  display: inline-block;
-  margin: 10px 0 10px 10px;
-  padding: 10px;
-  min-height: 100px;
-  width: 65%;
-  right: 5px;
-  vertical-align: middle;
-  background-color: white;
-  border: 2px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
-}
-
 .container{
   position: relative;
   margin-bottom: 200px;
   margin-top: 50px;
-}
-
-.task-desc{
-position: absolute;
-height: auto;
-background-color: blue;
-min-width: 200px;
-left: 20%;
-top: 50%;
-right: 20%;
 }
 
 #details-time-key{
@@ -242,7 +209,7 @@ right: 20%;
 
 .clicked-time{
   padding: 10px;
-  margin: 0 10px 0 10px;
+  margin: 10px 10px 0 10px;
   font-weight: bold;
   display : inline-flex;
   float: right;
