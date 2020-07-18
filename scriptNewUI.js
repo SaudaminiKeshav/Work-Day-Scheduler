@@ -14,11 +14,17 @@ var timeArray = [
     "06:00 PM"
 ]
 
+var taskArray = [];
+
 // Get current date and time 
 var currentDate = moment().format('dddd, MMMM Do YYYY');
 var currentTime = moment().format('h:mm A');
 
 var timeDivColor = "";
+let timeID = 0;
+
+var clickedTime = $("<p>");
+clickedTime.attr("class", "clicked-time");
 
 $(document).ready(function () {
     getAndDisplayDate();
@@ -42,9 +48,6 @@ function createHourlyPlanDiv() {
     var taskTitleH6 = $("<h6>");
     taskTitleH6.attr("class", "task-title");
     taskTitleH6.text("TASK");
-
-    var clickedTime = $("<p>");
-    clickedTime.attr("class", "clicked-time");
 
     $(".time-schedule-div").append(timeTitleH6);
     $(".time-schedule-div").append(createTimeDiv());
@@ -77,13 +80,16 @@ function getTimeDiv(time) {
     // Create time H6 to display time
     var timeH6 = $("<h6>");
     timeH6.attr("class", "time-schedule");
-    timeH6.attr("id", `title${time}`);
+    timeH6.attr("id", `${time}`);
     timeH6.text(time);
 
     timeH6.on('click', function () {
         // $(this).attr("id")
-        $(".clicked-time").text("TIME: " + time);
-        $(".clicked-time").attr("style",  $(this).attr("style"));
+        $(".clicked-time").text(time);
+        $(".clicked-time").attr("id", `${time}`);
+        $(".clicked-time").attr("style", $(this).attr("style"));
+        $(".clicked-time").trigger('contentchanged');
+        $(".task").replaceWith(createTaskDiv(time));
     })
     colorCodeDivAsPerTheCurrentTime(time.toString(), timeH6);
     return timeH6;
@@ -99,34 +105,23 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
     var newCurrentHour = "" + currentHour;
     var time = "" + divTime;
 
-    console.log(parseInt(time));
-    console.log(parseInt(newCurrentHour));
-
-    console.log(time.includes("A"));
-
     if (parseInt(newCurrentHour) === parseInt(time)) {
-        console.log("Matches");
         taskDiv.attr('style', 'background-color:#FD6F61');
     } else if ((parseInt(time) > parseInt(newCurrentHour)) && time.includes("A")) {
-        console.log("Past");
         taskDiv.attr('style', 'background-color:#6BB9D1');
     } else if ((parseInt(time) > parseInt(newCurrentHour)) && parseInt(time) == 12) {
-        console.log("Past");
         taskDiv.attr('style', 'background-color:#6BB9D1');
     } else if ((parseInt(time) < parseInt(newCurrentHour)) && time.includes("P")) {
-        console.log("Past");
         taskDiv.attr('style', 'background-color:#6BB9D1');
     } else if ((parseInt(time) < parseInt(newCurrentHour)) && time.includes("A")) {
-        console.log("Past");
         taskDiv.attr('style', 'background-color:#6BB9D1');
     } else if (parseInt(time) > parseInt(newCurrentHour)) {
-        console.log("Future");
         taskDiv.attr('style', 'background-color:#77C499');
     }
 
 }
 
-function createTaskDiv() {
+function createTaskDiv(time) {
     // Create container div 
     var newTaskDiv = $("<div>");
     newTaskDiv.attr("class", "task");
@@ -135,8 +130,9 @@ function createTaskDiv() {
     hrSeperator1.attr("class", "hr-separator");
 
     var taskTitle = $("<INPUT>");
-    taskTitle.attr("class", "task-title-input");
+    taskTitle.attr("id", "task-title-input");
     taskTitle.attr("placeholder", "Enter Title");
+    taskTitle.attr("value", "");
 
     var hrSeperator2 = $("<hr>");
     hrSeperator2.attr("class", "hr-separator-grey");
@@ -147,11 +143,44 @@ function createTaskDiv() {
     taskDesc.attr("type", "text");
     taskDesc.attr("rows", "15");
     taskDesc.attr("cols", "95");
+    taskDesc.attr("value", "");
     taskDesc.attr("placeholder", "Enter Details");
 
     var saveButton = $("<button>");
     saveButton.attr("class", "saveBtn");
     saveButton.text("Save");
+
+    saveButton.click(function () {
+
+        console.log(time);
+        console.log(taskTitle.val());
+        console.log(taskDesc.val());
+
+        if (localStorage.getItem('WorkDayNote') === null) {
+
+            // Add content to taskArray and set the item to local storage 
+            taskArray.push({ key: time, title: `${taskTitle.val()}`, desc: `${taskDesc.val()}` })
+             // Create a new array in local storage if doesn't exist 
+             localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
+             
+        } else {
+            // Else fetch the existing array from local storage 
+            WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
+
+            // If the array existing and is empty, push an object onto the array 
+            if (WorkDayNote.length != 0 && taskArray.length != 0) {
+                for(var i=0;i<taskArray.length;i++){
+                    if(taskArray[i].key == time){
+                        taskArray.splice(i,1);
+                    }
+                }
+                taskArray.push({ key: time, title: `${taskTitle.val()}`, desc: `${taskDesc.val()}` });
+                localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
+                console.log(WorkDayNote);
+            }
+            
+        }
+    });
 
     var deleteButton = $("<button>");
     deleteButton.attr("class", "deleteBtn");
@@ -166,3 +195,49 @@ function createTaskDiv() {
     newTaskDiv.append(deleteButton);
     return newTaskDiv;
 }
+
+
+function saveClickListener(time, taskTitle, taskDesc) {
+
+}
+
+
+
+    // if (WorkDayNote.length == 0) {
+    //     WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
+    // } else {
+    //     // for (var i = 0; i < WorkDayNote.length; i++) {
+    //     //     if (WorkDayNote[i].key != id) {
+    //     //         WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" });
+    //     //     } else if (WorkDayNote[i].key == id) {
+    //     //         WorkDayNote.pop(WorkDayNote[i]);
+    //     //         WorkDayNote.push({ key: id, timeKey: `${timeKey}`, title: `${title.val()}`, desc: `${desc.val()}`, Category: "No Category", Priority: "Low" })
+    //     //         localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
+    //     //     }
+    //     // }
+    // }
+    // localStorage.setItem(`WorkDayNote`, JSON.stringify(WorkDayNote));
+
+
+    // console.log(taskArray);
+
+    // $("#details-time-key").text = timeKey;
+    // title.val("");
+    // desc.val("");
+    // $(".task-details-dialog").hide();
+
+
+
+        // var id = "";
+    // // event handler
+    // $(".clicked-time").on('contentchanged', function (e) {
+    //     console.log(e.target.id);
+    //     // id = id.replace(id, e.target.id);
+    //    id.prepend(e.target.id);
+    // });
+
+    // console.log(id);
+
+    // var previousArrayItem = taskArray.slice(-1)[0];
+
+    // console.log(previousArrayItem);

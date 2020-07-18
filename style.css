@@ -269,7 +269,7 @@ right: 20%;
   }
 }
 
-.task-title-input{
+#task-title-input{
   background-color: white;
   color: black;
   padding: 10px;
