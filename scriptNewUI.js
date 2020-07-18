@@ -129,10 +129,12 @@ function createTaskDiv(time) {
     hrSeperator1.attr("class", "hr-separator");
 
     var taskTitle = $("<INPUT>");
-    taskTitle.attr("id", "task-title-input");
+    taskTitle.attr("class", "task-title-input");
+    taskTitle.attr("id", time);
     taskTitle.attr("placeholder", "Enter Title");
+
     var titleText = getTitleFromLocalStorage(time);
-    console.log(titleText);
+ 
     taskTitle.attr("value", titleText);
 
     var hrSeperator2 = $("<hr>");
@@ -144,8 +146,10 @@ function createTaskDiv(time) {
     taskDesc.attr("type", "text");
     taskDesc.attr("rows", "15");
     taskDesc.attr("cols", "95");
-    taskDesc.attr("value", "");
     taskDesc.attr("placeholder", "Enter Details");
+
+    var descText = getDescFromLocalStorage(time);
+    taskDesc.val(descText);
 
     var saveButton = $("<button>");
     saveButton.attr("class", "saveBtn");
@@ -218,16 +222,37 @@ function createTaskDiv(time) {
     return newTaskDiv;
 }
 
-function getTitleFromLocalStorage() {
+function getTitleFromLocalStorage(time) {
     if (localStorage.getItem('WorkDayNote') != null) {
         // Else fetch the existing array from local storage 
         WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
 
+        taskArray = WorkDayNote;
         // If the array existing and is empty, push an object onto the array 
-        if (WorkDayNote.length != 0 && taskArray.length != 0) {
+        if (taskArray.length != 0) {
             for (var i = 0; i < taskArray.length; i++) {
                 if (taskArray[i].key == time) {
+                    console.log( taskArray[i].title);
                     return taskArray[i].title;
+                }
+            }
+        }
+    }
+}
+
+function getDescFromLocalStorage(time){
+    console.log("Here");
+    if (localStorage.getItem('WorkDayNote') != null) {
+        // Else fetch the existing array from local storage 
+        WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
+
+        taskArray = WorkDayNote;
+        // If the array existing and is empty, push an object onto the array 
+        if (taskArray.length != 0) {
+            for (var i = 0; i < taskArray.length; i++) {
+                if (taskArray[i].key == time) {
+                    console.log( taskArray[i].desc);
+                    return taskArray[i].desc;
                 }
             }
         }
