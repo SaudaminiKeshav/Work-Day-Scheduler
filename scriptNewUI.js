@@ -53,7 +53,7 @@ function createHourlyPlanDiv() {
     $(".time-schedule-div").append(createTimeDiv());
     $(".task-schedule-div").append(taskTitleH6);
     $(".task-schedule-div").append(clickedTime);
-    $(".task-schedule-div").append(createTaskDiv());
+    $(".task-schedule-div").append(createEmptyTaskDiv());
 }
 
 function createTimeDiv() {
@@ -89,6 +89,7 @@ function getTimeDiv(time) {
         $(".clicked-time").attr("id", `${time}`);
         $(".clicked-time").attr("style", $(this).attr("style"));
         $(".clicked-time").trigger('contentchanged');
+        
         $(".task").replaceWith(createTaskDiv(time));
     })
     colorCodeDivAsPerTheCurrentTime(time.toString(), timeH6);
@@ -129,7 +130,20 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
     }
 }
 
+function createEmptyTaskDiv(){
+        // Create container div 
+        var newTaskDiv = $("<div>");
+        newTaskDiv.attr("class", "task");
+
+        $(".task-title").text("");
+
+        return newTaskDiv;
+}
+
 function createTaskDiv(time) {
+
+    $(".task-title").text("TASK");
+
     // Create container div 
     var newTaskDiv = $("<div>");
     newTaskDiv.attr("class", "task");
