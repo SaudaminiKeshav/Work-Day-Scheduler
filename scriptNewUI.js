@@ -92,6 +92,14 @@ function getTimeDiv(time) {
         $(".task").replaceWith(createTaskDiv(time));
     })
     colorCodeDivAsPerTheCurrentTime(time.toString(), timeH6);
+    
+    var color = timeH6.css( "background-color" );
+    console.log(color);
+    if(color == 'rgb(253, 111, 97)'){
+        timeH6.click();
+        console.log("Matches");
+    }
+ 
     return timeH6;
 }
 
@@ -107,6 +115,7 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
 
     if (parseInt(newCurrentHour) === parseInt(time)) {
         taskDiv.attr('style', 'background-color:#FD6F61');
+        taskDiv.trigger( "click" );
     } else if ((parseInt(time) > parseInt(newCurrentHour)) && time.includes("A")) {
         taskDiv.attr('style', 'background-color:#6BB9D1');
     } else if ((parseInt(time) > parseInt(newCurrentHour)) && parseInt(time) == 12) {
@@ -245,7 +254,6 @@ function getTitleFromLocalStorage(time) {
 }
 
 function getDescFromLocalStorage(time){
-    console.log("Here");
     if (localStorage.getItem('WorkDayNote') != null) {
         // Else fetch the existing array from local storage 
         WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
