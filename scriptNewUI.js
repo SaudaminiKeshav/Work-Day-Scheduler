@@ -26,7 +26,7 @@ let timeID = 0;
 var clickedTime = $("<p>");
 clickedTime.attr("class", "clicked-time");
 
-$(document).ready(function () {
+$(document).ready(function() {
     getAndDisplayDate();
 
     createHourlyPlanDiv();
@@ -83,24 +83,24 @@ function getTimeDiv(time) {
     timeH6.attr("id", `${time}`);
     timeH6.text(time);
 
-    timeH6.on('click', function () {
+    timeH6.on('click', function() {
         // $(this).attr("id")
         $(".clicked-time").text(time);
         $(".clicked-time").attr("id", `${time}`);
         $(".clicked-time").attr("style", $(this).attr("style"));
         $(".clicked-time").trigger('contentchanged');
-        
+
         $(".task").replaceWith(createTaskDiv(time));
     })
     colorCodeDivAsPerTheCurrentTime(time.toString(), timeH6);
-    
-    var color = timeH6.css( "background-color" );
+
+    var color = timeH6.css("background-color");
     console.log(color);
-    if(color == 'rgb(253, 111, 97)'){
+    if (color == 'rgb(253, 111, 97)') {
         timeH6.click();
         console.log("Matches");
     }
- 
+
     return timeH6;
 }
 
@@ -114,12 +114,17 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
     var newCurrentHour = "" + currentHour;
     var time = "" + divTime;
 
-    if (parseInt(newCurrentHour) === parseInt(time)) {
+    if ((parseInt(newCurrentHour) == parseInt(time)) && ((time.includes("P") && newCurrentHour.includes("P")) || (time.includes("A") && newCurrentHour.includes("A")))) {
         taskDiv.attr('style', 'background-color:#FD6F61');
-        taskDiv.trigger( "click" );
-    } else if ((parseInt(time) > parseInt(newCurrentHour)) && time.includes("A")) {
+        taskDiv.trigger("click");
+    } else if ((parseInt(newCurrentHour) == parseInt(time)) && (time.includes("A") && newCurrentHour.includes("P"))) {
         taskDiv.attr('style', 'background-color:#6BB9D1');
+        taskDiv.trigger("click");
     } else if ((parseInt(time) > parseInt(newCurrentHour)) && parseInt(time) == 12) {
+        taskDiv.attr('style', 'background-color:#6BB9D1');
+    } else if ((parseInt(time) > parseInt(newCurrentHour)) && (time.includes("P") && newCurrentHour.includes("P"))) {
+        taskDiv.attr('style', 'background-color:#77C499');
+    } else if ((parseInt(time) > parseInt(newCurrentHour)) && (time.includes("A") || time.includes("P"))) {
         taskDiv.attr('style', 'background-color:#6BB9D1');
     } else if ((parseInt(time) < parseInt(newCurrentHour)) && time.includes("P")) {
         taskDiv.attr('style', 'background-color:#6BB9D1');
@@ -130,19 +135,19 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
     }
 }
 
-function createEmptyTaskDiv(){
-        // Create container div 
-        var newTaskDiv = $("<div>");
-        newTaskDiv.attr("class", "task");
+function createEmptyTaskDiv() {
+    // Create container div 
+    var newTaskDiv = $("<div>");
+    newTaskDiv.attr("class", "task");
 
-        $(".task-title").text("");
+    $(".task-title").text("");
 
-        return newTaskDiv;
+    return newTaskDiv;
 }
 
 function createTaskDiv(time) {
 
-    $(".task-title").text("TASK");
+    $(".task-title").text("");
 
     // Create container div 
     var newTaskDiv = $("<div>");
@@ -157,7 +162,7 @@ function createTaskDiv(time) {
     taskTitle.attr("placeholder", "Enter Title");
 
     var titleText = getTitleFromLocalStorage(time);
- 
+
     taskTitle.attr("value", titleText);
 
     var hrSeperator2 = $("<hr>");
@@ -178,13 +183,13 @@ function createTaskDiv(time) {
     saveButton.attr("class", "saveBtn");
     saveButton.text("Save");
 
-    saveButton.click(function () {
+    saveButton.click(function() {
 
         if (localStorage.getItem('WorkDayNote') === null) {
 
             // Add content to taskArray and set the item to local storage 
             taskArray.push({ key: time, title: `${taskTitle.val()}`, desc: `${taskDesc.val()}` })
-            // Create a new array in local storage if doesn't exist 
+                // Create a new array in local storage if doesn't exist 
             localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
 
         } else {
@@ -194,7 +199,7 @@ function createTaskDiv(time) {
             if ((WorkDayNote.length == 0 && taskArray.length == 0)) {
                 // Add content to taskArray and set the item to local storage 
                 taskArray.push({ key: time, title: `${taskTitle.val()}`, desc: `${taskDesc.val()}` })
-                // Create a new array in local storage if doesn't exist 
+                    // Create a new array in local storage if doesn't exist 
                 localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
             }
 
@@ -215,7 +220,7 @@ function createTaskDiv(time) {
     var deleteButton = $("<button>");
     deleteButton.attr("class", "deleteBtn");
     deleteButton.text("Delete");
-    deleteButton.click(function () {
+    deleteButton.click(function() {
 
         taskTitle.val("");
         taskDesc.val("");
@@ -259,7 +264,7 @@ function getTitleFromLocalStorage(time) {
         if (taskArray.length != 0) {
             for (var i = 0; i < taskArray.length; i++) {
                 if (taskArray[i].key == time) {
-                    console.log( taskArray[i].title);
+                    console.log(taskArray[i].title);
                     return taskArray[i].title;
                 }
             }
@@ -267,7 +272,7 @@ function getTitleFromLocalStorage(time) {
     }
 }
 
-function getDescFromLocalStorage(time){
+function getDescFromLocalStorage(time) {
     if (localStorage.getItem('WorkDayNote') != null) {
         // Else fetch the existing array from local storage 
         WorkDayNote = JSON.parse(localStorage.getItem('WorkDayNote'));
@@ -277,7 +282,7 @@ function getDescFromLocalStorage(time){
         if (taskArray.length != 0) {
             for (var i = 0; i < taskArray.length; i++) {
                 if (taskArray[i].key == time) {
-                    console.log( taskArray[i].desc);
+                    console.log(taskArray[i].desc);
                     return taskArray[i].desc;
                 }
             }
