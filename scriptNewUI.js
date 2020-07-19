@@ -111,28 +111,48 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
     var meredian = moment().format('A');
     var currentHour = hour + ":00 " + meredian;
 
-    var newCurrentHour = "" + currentHour;
+    // var newCurrentHour = "" + currentHour;
+    var newCurrentHour = "6:00 PM";
     var time = "" + divTime;
 
-    if ((parseInt(newCurrentHour) == parseInt(time)) && ((time.includes("P") && newCurrentHour.includes("P")) || (time.includes("A") && newCurrentHour.includes("A")))) {
+
+    // When div time is 8: 00 AM andcurrent hour is 8:00AM 
+    if ((parseInt(newCurrentHour) === parseInt(time)) && ((newCurrentHour.includes("A") && time.includes("A")) || (time.includes("P") && newCurrentHour.includes("P")))) {
         taskDiv.attr('style', 'background-color:#FD6F61');
         taskDiv.trigger("click");
-    } else if ((parseInt(newCurrentHour) == parseInt(time)) && (time.includes("A") && newCurrentHour.includes("P"))) {
-        taskDiv.attr('style', 'background-color:#6BB9D1');
-        taskDiv.trigger("click");
-    } else if ((parseInt(time) > parseInt(newCurrentHour)) && parseInt(time) == 12) {
-        taskDiv.attr('style', 'background-color:#6BB9D1');
-    } else if ((parseInt(time) > parseInt(newCurrentHour)) && (time.includes("P") && newCurrentHour.includes("P"))) {
-        taskDiv.attr('style', 'background-color:#77C499');
-    } else if ((parseInt(time) > parseInt(newCurrentHour)) && (time.includes("A") || time.includes("P"))) {
-        taskDiv.attr('style', 'background-color:#6BB9D1');
-    } else if ((parseInt(time) < parseInt(newCurrentHour)) && time.includes("P")) {
-        taskDiv.attr('style', 'background-color:#6BB9D1');
-    } else if ((parseInt(time) < parseInt(newCurrentHour)) && time.includes("A")) {
-        taskDiv.attr('style', 'background-color:#6BB9D1');
-    } else if (parseInt(time) > parseInt(newCurrentHour)) {
+    }
+    if ((parseInt(newCurrentHour) < parseInt(time)) && parseInt(time) == 12) {
         taskDiv.attr('style', 'background-color:#77C499');
     }
+    if ((parseInt(newCurrentHour) > parseInt(time)) && (newCurrentHour.includes("A") && time.includes("P"))) {
+        taskDiv.attr('style', 'background-color:#77C499');
+    }
+    if ((parseInt(newCurrentHour) < parseInt(time)) && (newCurrentHour.includes("A") && time.includes("A"))) {
+        taskDiv.attr('style', 'background-color:#77C499');
+    }
+    if ((parseInt(newCurrentHour) > parseInt(time)) && (newCurrentHour.includes("A") && time.includes("A"))) {
+        taskDiv.attr('style', 'background-color:#6BB9D1');
+    }
+    if ((parseInt(newCurrentHour) > parseInt(time)) && (newCurrentHour.includes("P") && time.includes("A"))) {
+        taskDiv.attr('style', 'background-color:#6BB9D1');
+    }
+
+    if (parseInt(newCurrentHour) == 12 && (parseInt(newCurrentHour) > parseInt(time)) && (newCurrentHour.includes("P") && time.includes("P"))) {
+        taskDiv.attr('style', 'background-color:#77C499');
+    } else if ((parseInt(newCurrentHour) > parseInt(time)) && (newCurrentHour.includes("P") && time.includes("P"))) {
+        taskDiv.attr('style', 'background-color:#6BB9D1');
+    }
+
+    if ((parseInt(newCurrentHour) < parseInt(time)) && (newCurrentHour.includes("P") && time.includes("A"))) {
+        taskDiv.attr('style', 'background-color:#6BB9D1');
+    }
+    if ((parseInt(newCurrentHour) < parseInt(time)) && (newCurrentHour.includes("P") && time.includes("P"))) {
+        taskDiv.attr('style', 'background-color:#77C499');
+    }
+    if ((parseInt(newCurrentHour) < parseInt(time)) && parseInt(time) == 12 && (newCurrentHour.includes("P") && time.includes("P"))) {
+        taskDiv.attr('style', 'background-color:#6BB9D1');
+    }
+
 }
 
 function createEmptyTaskDiv() {
@@ -146,7 +166,6 @@ function createEmptyTaskDiv() {
 }
 
 function createTaskDiv(time) {
-
     $(".task-title").text("");
 
     // Create container div 

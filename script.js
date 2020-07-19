@@ -24,7 +24,7 @@ var taskArray = [];
 
 var WorkDayNote = [];
 
-$(document).ready(function () {
+$(document).ready(function() {
     getAndDisplayDate();
 
     createHourlyPlanDiv();
@@ -57,7 +57,7 @@ function getTimeTaskDiv(time) {
     newTimeTaskDiv.attr("class", "time-task-schedule");
     newTimeTaskDiv.attr("id", `${time}`);
     var divID = $(".time-task-schedule").attr("id");
-    $(".time-task-schedule").on('click', function () {
+    $(".time-task-schedule").on('click', function() {
         createAndDisplayTaskDetailsDialog($(this).attr("id"));
     });
 
@@ -74,7 +74,7 @@ function getTimeTaskDiv(time) {
     taskDiv.attr("class", "task-schedule");
     taskDiv.attr("id", `${time}`);
 
-    colorCodeDivAsPerTheCurrentTime(time.toString(),taskDiv);
+    colorCodeDivAsPerTheCurrentTime(time.toString(), taskDiv);
 
 
     // Creating new P tag to display title
@@ -86,17 +86,6 @@ function getTimeTaskDiv(time) {
 
     return newTimeTaskDiv;
 }
-
-// function customClickListener(id) {
-//     $(`title${id}`).text(id);
-
-//     $("#task-details-dialog").show();
-
-//     console.log(id);
-//     // getSavedData(id)
-//     // var dialog = $("#task-details-dialog");
-//     // $("body").append(dialog);
-// }
 
 function createAndDisplayTaskDetailsDialog(id) {
     // Creating a container div for details dialog 
@@ -271,14 +260,6 @@ function getTitleData(timeID) {
         console.log(rtemp);
     }
 
-    // console.log(timeID);
-    // console.log(note.time);
-    // if (note.time == timeID) {
-    //     console.log(timeID);
-    //     console.log(note.time);
-    //     $("#details-title").value = note.title.text;
-    // }
-
 }
 
 
@@ -286,64 +267,24 @@ function createLocalStorage() {
     localStorage.setItem('WorkDayNote', JSON.stringify(taskArray));
 }
 
-
-// function colorCodeDivAsPerTheCurrentTime(time) {
-
-// currentTime = "10:00 am";
-// if (time != undefined && currentTime != undefined) {
-//     var formattedHour = (time.toString()).split(':');
-//     var divHour = formattedHour[0].toString();
-//     var divPost = formattedHour[1].toString();
-
-
-//     // if (formattedHour[1].toLowerCase().includes("am")) {
-//     //     console.log("am");
-//     // } else if (formattedHour[1].toLowerCase().includes("pm")) {
-//     //     console.log("pm");
-//     // }
-
-//     var formattedcurrentTimeHour = (currentTime.toString()).split(':');
-//     var currentHour = formattedcurrentTimeHour[0].toString();
-//     var currentPost = formattedcurrentTimeHour[1].toString();
-
-//     if (divHour == currentHour && (divPost.toLowerCase().substr(3, 5) == currentPost.toLowerCase().substr(3, 5))) {
-//         console.log("matches");
-//         return "matches";
-//     }
-// }
-
-
-
-// if (time == currentTime) {
-//     console.log("Matches");
-// }
-// if(currentHour.includes('am')){
-//     console.log("Morning");
-//     $(".task-schedule").addClass(".")
-// }else if(currentHour.includes('pm')){
-//     console.log("Night");
-// }
-// }
-
 //Function for color coding and adding locally saved tasks into their proper areas
 function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
 
     var hour = moment().format('hh');
     var meredian = moment().format('A');
     var currentHour = hour + ":00 " + meredian;
-    //currentHour.toString();
-    //divTime.toString()
-    var newCurrentHour = ""+currentHour;
-    var newDivTime = ""+divTime;
 
-        if(parseInt(newCurrentHour) === parseInt(newDivTime)){
-           
-            taskDiv.attr('style',  'background-color:#FD6F61');
-        }else if( (parseInt(newDivTime)< parseInt(newCurrentHour)) && newDivTime.includes("P")){
-            taskDiv.attr('style',  'background-color:#77C499');
-        }else if(parseInt(newDivTime) < parseInt(newCurrentHour)){
-            taskDiv.attr('style',  'background-color:#6BB9D1');
-        }else if(parseInt(newDivTime)> parseInt(newCurrentHour)){
-            taskDiv.attr('style',  'background-color:#77C499');
-        }
+    var newCurrentHour = "" + currentHour;
+    var newDivTime = "" + divTime;
+
+    if (parseInt(newCurrentHour) === parseInt(newDivTime)) {
+
+        taskDiv.attr('style', 'background-color:#FD6F61');
+    } else if ((parseInt(newDivTime) < parseInt(newCurrentHour)) && newDivTime.includes("P")) {
+        taskDiv.attr('style', 'background-color:#77C499');
+    } else if (parseInt(newDivTime) < parseInt(newCurrentHour)) {
+        taskDiv.attr('style', 'background-color:#6BB9D1');
+    } else if (parseInt(newDivTime) > parseInt(newCurrentHour)) {
+        taskDiv.attr('style', 'background-color:#77C499');
+    }
 }
