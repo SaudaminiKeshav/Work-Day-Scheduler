@@ -1,135 +1,123 @@
-body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1;
-}
-
-textarea {
-    background: transparent;
-    border: none;
-    resize: none;
-    color: #000000;
-    border-left: 1px solid black;
-    padding: 10px;
-}
-
-.jumbotron {
-    text-align: center;
-    background-color: transparent;
-    color: black;
-    border-radius: 0;
-    border-bottom: 5px solid black;
-}
-
-.description {
-    white-space: pre-wrap;
-}
-
-.row {
-    white-space: pre-wrap;
-    height: 80px;
-    border-top: 1px solid white;
-    ;
-}
-
-.hour {
-    background-color: #ffffff;
-    color: #000000;
-    border-top: 1px dashed #000000;
-}
-
-.past {
-    background-color: #6BB9D1;
-    color: white;
-}
-
-.present {
-    background-color: #FD6F61;
-    color: white;
-}
-
-.future {
-    background-color: #77C499;
-    color: white;
-}
-
-.saveBtn {
-    border-left: 1px solid black;
-    border-radius: 5px;
-    background-color: #FD9F76;
-    color: white;
-    float: right;
-    padding: 5px;
-}
-
-.saveBtn i:hover {
-    font-size: 20px;
-    transition: all .3s ease-in-out;
-}
-
-.deleteBtn {
-    border-left: 1px solid black;
-    border-radius: 5px;
-    background-color: #B098D9;
-    color: white;
-    float: right;
-    padding: 5px;
-}
-
-.deleteBtn i:hover {
-    font-size: 20px;
-    transition: all .3s ease-in-out;
-}
-
-.time-block {
-    text-align: center;
-    border-radius: 5px;
-    color: red;
-    font-weight: bold;
-    padding-top: 10px;
-}
-
-.time-title {
-    font-weight: bold;
-    margin: 10px 0 10px 5px;
-    padding: 10px;
-    vertical-align: middle;
-}
-
-.time-schedule-div {
-    float: left;
-}
-
-.time-schedule {
-    display: block;
-    margin: 10px 0 10px 5px;
-    padding: 10px;
-    height: 100%;
-    display: flex;
-    font-weight: bold;
-    border: 2px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
-}
-
-.container {
-    position: relative;
-    margin-bottom: 200px;
-    margin-top: 50px;
-}
-
-#details-time-key {
-    background-color: white;
-    color: black;
-    display: inline-block;
-    padding-left: 5px;
-    margin-left: 5px;
-}
-
-
-/* Mobile devices  */
-
-@media screen and (max-width: 1100px) {
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        line-height: 1;
+    }
+    
+    textarea {
+        background: transparent;
+        border: none;
+        resize: none;
+        color: #000000;
+        border-left: 1px solid black;
+        padding: 10px;
+    }
+    
+    .jumbotron {
+        text-align: center;
+        background-color: transparent;
+        color: black;
+        border-radius: 0;
+        border-bottom: 5px solid black;
+    }
+    
+    .description {
+        white-space: pre-wrap;
+    }
+    
+    .row {
+        white-space: pre-wrap;
+        height: 80px;
+        border-top: 1px solid white;
+        ;
+    }
+    
+    .hour {
+        background-color: #ffffff;
+        color: #000000;
+        border-top: 1px dashed #000000;
+    }
+    
+    .past {
+        background-color: #6BB9D1;
+        color: white;
+    }
+    
+    .present {
+        background-color: #FD6F61;
+        color: white;
+    }
+    
+    .future {
+        background-color: #77C499;
+        color: white;
+    }
+    
+    .saveBtn {
+        border-left: 1px solid black;
+        border-radius: 5px;
+        background-color: #FD9F76;
+        color: white;
+        float: right;
+        padding: 5px;
+    }
+    
+    .saveBtn i:hover {
+        font-size: 20px;
+        transition: all .3s ease-in-out;
+    }
+    
+    .deleteBtn {
+        border-left: 1px solid black;
+        border-radius: 5px;
+        background-color: #B098D9;
+        color: white;
+        float: right;
+        padding: 5px;
+    }
+    
+    .deleteBtn i:hover {
+        font-size: 20px;
+        transition: all .3s ease-in-out;
+    }
+    
+    .time-block {
+        text-align: center;
+        border-radius: 5px;
+        color: red;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+    
+    .time-title {
+        font-weight: bold;
+        margin: 10px 0 10px 5px;
+        padding: 10px;
+        vertical-align: middle;
+    }
+    
+    .time-schedule-div {
+        float: left;
+    }
+    
+    .time-schedule {
+        display: block;
+        margin: 10px 0 10px 5px;
+        padding: 10px;
+        height: 100%;
+        display: flex;
+        font-weight: bold;
+        border: 2px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
+    }
+    
+    .container {
+        position: relative;
+        margin-bottom: 200px;
+        margin-top: 50px;
+    }
+    
     #details-time-key {
         background-color: white;
         color: black;
@@ -137,150 +125,160 @@ textarea {
         padding-left: 5px;
         margin-left: 5px;
     }
-}
-
-.details-hr {
-    background-color: black;
-    margin: 0px 10px 0px 10px;
-}
-
-#top {
-    padding-left: 20%;
-}
-
-
-/* Web and tab devices  */
-
-.task-details-dialog {
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-    border-radius: 15px;
-    border-style: solid;
-    min-height: 375px;
-    width: 50%;
-    position: fixed;
-    left: 50%;
-    top: 65%;
-    bottom: 50%;
-    transform: translate(-50%, -50%);
-}
-
-
-/* Mobile devices  */
-
-@media screen and (max-width: 1100px) {
+    /* Mobile devices  */
+    
+    @media screen and (max-width: 1100px) {
+        #details-time-key {
+            background-color: white;
+            color: black;
+            display: inline-block;
+            padding-left: 5px;
+            margin-left: 5px;
+        }
+    }
+    
+    .details-hr {
+        background-color: black;
+        margin: 0px 10px 0px 10px;
+    }
+    
+    #top {
+        padding-left: 20%;
+    }
+    /* Web and tab devices  */
+    
     .task-details-dialog {
         background-color: white;
-        border-radius: 15px;
         color: black;
+        border: 2px solid black;
+        border-radius: 15px;
+        border-style: solid;
         min-height: 375px;
-        width: 85%;
+        width: 50%;
         position: fixed;
         left: 50%;
-        top: 60%;
+        top: 65%;
         bottom: 50%;
         transform: translate(-50%, -50%);
     }
-}
-
-.div-section-3 {
-    margin: 5px;
-    background-color: white;
-    color: black;
-}
-
-
-/* /#6BB9D1 */
-
-.task-schedule-div {
-    background-color: white;
-    height: 610px;
-    width: auto;
-    display: block;
-    margin-left: 110px;
-    margin-top: 10px;
-    border: 1px solid #000000;
-}
-
-.task-title {
-    font-weight: bold;
-    margin: 15px 10px 10px 10px;
-    padding-left: 20px;
-    padding-top: 10px;
-    display: inline-flex;
-}
-
-.clicked-time {
-    padding: 10px;
-    margin: 10px 10px 0 10px;
-    font-weight: bold;
-    display: inline-flex;
-    float: right;
-    border-radius: 10px;
-}
-
-.hr-separator {
-    background-color: #000000;
-}
-
-.hr-separator-grey {
-    background-color: rgb(165, 162, 162);
-    margin-left: 10px;
-    margin-right: 10px;
-    min-width: 70%;
-}
-
-@media screen and (max-width: 1100px) {
+    /* Mobile devices  */
+    
+    @media screen and (max-width: 1100px) {
+        .task-details-dialog {
+            background-color: white;
+            border-radius: 15px;
+            color: black;
+            min-height: 375px;
+            width: 85%;
+            position: fixed;
+            left: 50%;
+            top: 60%;
+            bottom: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    
+    .div-section-3 {
+        margin: 5px;
+        background-color: white;
+        color: black;
+    }
+    /* /#6BB9D1 */
+    
+    .task-schedule-div {
+        background-color: white;
+        height: 610px;
+        width: auto;
+        display: block;
+        margin-left: 110px;
+        margin-top: 10px;
+        border: 1px solid #000000;
+    }
+    
+    .task-title {
+        font-weight: bold;
+        margin: 15px 10px 10px 10px;
+        padding-left: 20px;
+        padding-top: 10px;
+        display: inline-flex;
+    }
+    
+    .clicked-time {
+        padding: 10px;
+        margin: 10px 10px 0 10px;
+        font-weight: bold;
+        display: inline-flex;
+        float: right;
+        border-radius: 10px;
+    }
+    
+    .hr-separator {
+        background-color: #000000;
+    }
+    
     .hr-separator-grey {
         background-color: rgb(165, 162, 162);
         margin-left: 10px;
         margin-right: 10px;
-        min-width: 60%;
+        min-width: 70%;
     }
-}
-
-.task-title-input {
-    background-color: white;
-    color: black;
-    padding: 10px;
-    border: none;
-    text-align: start;
-    display: inline-block;
-    min-width: 70%;
-    size: 400;
-    width: auto;
-    margin-left: 5px;
-    border-color: white;
-}
-
-
-/* Mobile devices  */
-
-@media screen and (max-width: 1100px) {
+    
+    @media screen and (max-width: 1100px) {
+        .hr-separator-grey {
+            background-color: rgb(165, 162, 162);
+            margin-left: 10px;
+            margin-right: 10px;
+            min-width: 60%;
+        }
+    }
+    
     .task-title-input {
         background-color: white;
-        border-radius: 15px;
+        color: black;
+        padding: 10px;
+        border: none;
+        text-align: start;
+        display: inline-block;
+        min-width: 70%;
+        size: 400;
+        width: auto;
+        margin-left: 5px;
+        border-color: white;
+    }
+    /* Mobile devices  */
+    
+    @media screen and (max-width: 1100px) {
+        .task-title-input {
+            background-color: white;
+            border-radius: 15px;
+            color: black;
+            padding: 10px;
+            text-align: start;
+            display: inline-block;
+            min-width: 60%;
+            size: 500;
+            width: auto;
+            border-color: white;
+        }
+    }
+    
+    #details-desc {
+        background-color: white;
         color: black;
         padding: 10px;
         text-align: start;
-        display: inline-block;
-        min-width: 60%;
-        size: 500;
-        width: auto;
-        border-color: white;
+        margin-bottom: 0px;
+        margin-right: 5px;
+        height: 400px;
+        width: 100%;
+        max-lines: 5;
+        columns: 100;
     }
-}
-
-#details-desc {
-    background-color: white;
-    color: black;
-    padding: 10px;
-    text-align: start;
-    margin-bottom: 0px;
-    margin-right: 5px;
-    height: 400px;
-    width: 100%;
-    max-lines: 5;
-    columns: 100;
-}
+    
+    .bg-image {
+        max-width: auto;
+        max-height: 75%;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }

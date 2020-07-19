@@ -157,8 +157,13 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
 function createEmptyTaskDiv() {
     // Create container div 
     var newTaskDiv = $("<div>");
-    newTaskDiv.attr("class", "task");
+    newTaskDiv.attr("class", "task ");
 
+    var bgimg = $("<img>");
+    bgimg.attr("src", "Assets\\gifntext-gif.gif");
+    bgimg.attr("class", "bg-image");
+
+    newTaskDiv.append(bgimg);
     $(".task-title").text("");
 
     return newTaskDiv;
