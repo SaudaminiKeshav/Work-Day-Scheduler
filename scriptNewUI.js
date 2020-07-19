@@ -111,8 +111,7 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
     var meredian = moment().format('A');
     var currentHour = hour + ":00 " + meredian;
 
-    // var newCurrentHour = "" + currentHour;
-    var newCurrentHour = "6:00 PM";
+    var newCurrentHour = "" + currentHour;
     var time = "" + divTime;
 
 
