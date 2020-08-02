@@ -120,6 +120,10 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
         taskDiv.attr('style', 'background-color:#FD6F61');
         taskDiv.trigger("click");
     }
+    if ((parseInt(newCurrentHour) === parseInt(time)) && ((newCurrentHour.includes("P") && time.includes("A")))) {
+        taskDiv.attr('style', 'background-color:#6BB9D1');
+        taskDiv.trigger("click");
+    }
     if ((parseInt(newCurrentHour) < parseInt(time)) && parseInt(time) == 12) {
         taskDiv.attr('style', 'background-color:#77C499');
     }
@@ -138,7 +142,8 @@ function colorCodeDivAsPerTheCurrentTime(divTime, taskDiv) {
 
     if (parseInt(newCurrentHour) == 12 && (parseInt(newCurrentHour) > parseInt(time)) && (newCurrentHour.includes("P") && time.includes("P"))) {
         taskDiv.attr('style', 'background-color:#77C499');
-    } else if ((parseInt(newCurrentHour) > parseInt(time)) && (newCurrentHour.includes("P") && time.includes("P"))) {
+    } 
+     if ((parseInt(newCurrentHour) > parseInt(time)) && (newCurrentHour.includes("P") && time.includes("P"))) {
         taskDiv.attr('style', 'background-color:#6BB9D1');
     }
 
